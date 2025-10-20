@@ -898,45 +898,45 @@
                     </div>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm">
+                    <form action="https://formspree.io/f/mblzerkn" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="project">Project Goal</label>
-                            <input type="text" id="project" class="form-control" required>
+                            <input type="text" id="project" name="project" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="budget">Budget Range</label>
-                            <select id="budget" class="form-control" required>
+                            <select id="budget" name="budget" class="form-control" required>
                                 <option value="">Select Budget Range</option>
-                                <option value="1k-5k">$50 - $100</option>
-                                <option value="5k-10k">$100 - $150</option>
-                                <option value="10k-20k">$150 - $200</option>
-                                <option value="20k+">$200+</option>
+                                <option value="1k-5k">$1,000 - $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-20k">$10,000 - $20,000</option>
+                                <option value="20k+">$20,000+</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="timeline">Timeline</label>
-                            <select id="timeline" class="form-control" required>
+                            <select id="timeline" name="timeline" class="form-control" required>
                                 <option value="">Select Timeline</option>
-                                <option value="1-2">1-2 Weeks</option>
-                                <option value="2-4">1-2 months</option>
+                                <option value="1-2">1-2 months</option>
+                                <option value="2-4">2-4 months</option>
                                 <option value="4-6">4-6 months</option>
                                 <option value="6+">6+ months</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="5" required></textarea>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="privacy" required>
+                            <input type="checkbox" id="privacy" name="privacy" required>
                             <label for="privacy">I agree to the privacy policy and terms of service</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Get a Proposal</button>
