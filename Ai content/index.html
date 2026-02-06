@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>MHT Navindana | AI Content Creator Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0f0f0f;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-1: #007cf0;
+            --accent-2: #00dfd8;
+            --accent-3: #ff0080;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            background: var(--gradient);
+            color: white;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--gradient);
+            border-color: transparent;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-wrapper iframe,
+        .video-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            text-decoration: none;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .video-card:hover .play-button {
+            background: var(--gradient);
+            transform: translate(-50%, -50%) scale(1.1);
+            border-color: transparent;
+        }
+
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .video-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .video-tag {
+            font-size: 0.75rem;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .video-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .video-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN - MOBILE & TABLET
+           ============================================ */
+
+        /* Tablet Devices (768px - 1024px) */
+        @media screen and (max-width: 1024px) {
+            .container {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: clamp(2rem, 6vw, 3.5rem);
+            }
+
+            h2 {
+                font-size: 2rem !important;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Mobile Devices (max-width: 768px) */
+        @media screen and (max-width: 768px) {
+
+            /* Header & Navigation */
+            header {
+                padding: 15px 0;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(5, 5, 5, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                gap: 30px;
+                transition: left 0.3s ease;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Hero Section */
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 100px 0 50px;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 0.95rem !important;
+                margin-bottom: 25px !important;
+            }
+
+            .btn {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+
+            /* Sections */
+            section {
+                padding: 60px 0;
+            }
+
+            h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 30px !important;
+            }
+
+            /* About Section */
+            #about .fade-in {
+                max-width: 100%;
+            }
+
+            #about p {
+                font-size: 1rem !important;
+                line-height: 1.7 !important;
+            }
+
+            /* Profile Picture */
+            #about img {
+                width: 150px !important;
+                height: 150px !important;
+            }
+
+            /* Filter Buttons */
+            .filter-container {
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.85rem;
+            }
+
+            /* Video Grid */
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .video-card {
+                max-width: 100%;
+            }
+
+            .video-info {
+                padding: 15px;
+            }
+
+            .video-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .video-info p {
+                font-size: 0.85rem;
+            }
+
+            /* Services Section */
+            #services>div>div {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            #services .fade-in {
+                padding: 30px !important;
+            }
+
+            #services h3 {
+                font-size: 1.3rem !important;
+            }
+
+            /* Skills Section */
+            #skills h3 {
+                font-size: 1.5rem !important;
+            }
+
+            #skills>div>div>div {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+                gap: 15px !important;
+            }
+
+            /* Contact Section */
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            input,
+            textarea {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            /* Contact Buttons */
+            #contact>div>div:first-of-type>div {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+
+            #contact a {
+                padding: 18px !important;
+            }
+
+            #contact a i {
+                font-size: 28px !important;
+            }
+
+            #contact a>div>div:first-child {
+                font-size: 1rem !important;
+            }
+
+            #contact a>div>div:last-child {
+                font-size: 0.85rem !important;
+            }
+
+            /* Footer */
+            footer {
+                padding: 40px 0 !important;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Small Mobile Devices (max-width: 480px) */
+        @media screen and (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+
+            .filter-btn {
+                padding: 7px 15px;
+                font-size: 0.8rem;
+            }
+
+            .video-info h3 {
+                font-size: 1rem;
+            }
+
+            .video-tag {
+                font-size: 0.7rem;
+            }
+
+            #about img {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            #services h3 {
+                font-size: 1.2rem !important;
+            }
+
+            #skills h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .contact-form {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">MHT AI CREATIVE</div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                    <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
+                    <li><a href="#about" onclick="closeMenu()">About</a></li>
+                    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+                    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+                    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="fade-in">AI Visual <span class="gradient-text">Creator</span></h1>
+            <p class="fade-in"
+                style="margin-bottom: 30px; color: var(--text-secondary); max-width: 700px; margin-left: auto; margin-right: auto;">
+                Merging AI technology with cinematic storytelling to create high-impact video content for brands and
+                artists.</p>
+            <a href="#portfolio" class="btn fade-in">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">About Me</h2>
+            <div class="fade-in" style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <!-- Profile Picture -->
+                <div style="margin-bottom: 40px;">
+                    <div
+                        style="width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; padding: 5px; background: var(--gradient); box-shadow: 0 10px 40px rgba(0, 124, 240, 0.3);">
+                        <img src="https://theshannavindanna.github.io/MHTNavindanaPortfolio/profile.png"
+                            alt="M H Theshan Navindana"
+                            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-secondary);">
+                    </div>
+                </div>
+
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 30px;">
+                    I am <span style="color: var(--text-primary); font-weight: 600;">M H Theshan Navindana</span>, an AI
+                    Content Creator and visual storyteller dedicated to redefining the boundaries of digital production.
+                    By merging cutting-edge generative AI technologies with a cinematic eye for detail, I specialize in
+                    crafting high-impact advertisements, immersive music videos, and hyper-realistic product showcases.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
+                    My mission is to bridge the gap between imagination and reality, helping brands and artists leverage
+                    the power of AI to create extraordinary visual experiences that captivate modern audiences.
+                    Works as Ai content creator at "Kusumsiri Video Production".
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">My Projects</h2>
+
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterVideos('all', this)">All Work</button>
+                <button class="filter-btn" onclick="filterVideos('adds', this)">Adds</button>
+                <button class="filter-btn" onclick="filterVideos('product', this)">Product Videos</button>
+                <button class="filter-btn" onclick="filterVideos('music', this)">Music Videos</button>
+                <button class="filter-btn" onclick="filterVideos('story', this)">Story</button>
+            </div>
+
+            <div class="video-grid">
+                <!-- Video 1: Thambara Kakulak (Music) -->
+                <div class="video-card fade-in" data-category="music">
+                    <div class="video-wrapper">
+                        <a href="https://youtu.be/LMUxfGop7N0?si=dpiSzJf1l7p0MrTu" target="_blank" class="video-link">
+                            <img src="https://img.youtube.com/vi/LMUxfGop7N0/hqdefault.jpg" alt="Thambara Kakulak"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Music Video</span>
+                        <h3>Thambara Kakulak</h3>
+                        <p>Beautiful lyrical music video featuring 2D animation and evocative storytelling. By
+                            "Kusumsiri".</p>
+                    </div>
+                </div>
+
+                <!-- Video 2: Athithawarjana (Story) -->
+                <div class="video-card fade-in" data-category="story">
+                    <div class="video-wrapper">
+                        <a href="https://youtu.be/h2uOkvZf0-8?si=YHagArJph5MWIfL4" target="_blank" class="video-link">
+                            <img src="https://img.youtube.com/vi/h2uOkvZf0-8/hqdefault.jpg" alt="Athithawarjana"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Storytelling</span>
+                        <h3>Athithawarjana</h3>
+                        <p>A narrative remembrance piece from the 'Diary' series, capturing nostalgic moments.By
+                            "Kusumsiri".</p>
+                    </div>
+                </div>
+
+                <!-- Video 3: Dana danath (Music) -->
+                <div class="video-card fade-in" data-category="music">
+                    <div class="video-wrapper">
+                        <a href="https://youtu.be/JkR1H6JKyI4?si=1ZnzqzEDtPdSGpID" target="_blank" class="video-link">
+                            <img src="https://img.youtube.com/vi/JkR1H6JKyI4/hqdefault.jpg" alt="Dana danath Cover"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Music Video</span>
+                        <h3>Dana Danath (Cover)</h3>
+                        <p>A captivating female cover song with visual aesthetics. By "Kusumsiri".</p>
+                    </div>
+                </div>
+
+                <!-- Video 4: Dakune Pin (Music) -->
+                <div class="video-card fade-in" data-category="music">
+                    <div class="video-wrapper">
+                        <a href="https://youtu.be/vGO_X44TkZI?si=VMfTl51LULx0uWkP" target="_blank" class="video-link">
+                            <img src="https://img.youtube.com/vi/vGO_X44TkZI/hqdefault.jpg" alt="Dakune Pin Cover"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Music Video</span>
+                        <h3>Dakune Pin Results</h3>
+                        <p>Cover song performance by Chamara Weerasinghe & Kusum Siri.</p>
+                    </div>
+                </div>
+
+                <!-- Video 5: Athithawarjana (Story2) -->
+                <div class="video-card fade-in" data-category="story">
+                    <div class="video-wrapper">
+                        <a href="https://youtu.be/kFKyEWNkgQs?si=7hCuS7ul9bQBqo4r" target="_blank" class="video-link">
+                            <img src="https://img.youtube.com/vi/kFKyEWNkgQs/hqdefault.jpg" alt="Athithawarjana"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Storytelling</span>
+                        <h3>Athithawarjana</h3>
+                        <p>A narrative remembrance piece from the 'Diary' series, capturing nostalgic moments.By
+                            "Kusumsiri".</p>
+                    </div>
+                </div>
+                <!-- Google Drive: Adds -->
+                <div class="video-card fade-in" data-category="adds">
+                    <div class="video-wrapper">
+                        <a href="https://drive.google.com/file/d/1DJXUU7LGSoADzGsIy2gUAU7k6UH9baBP/view?usp=drive_link"
+                            target="_blank" class="video-link">
+                            <img src="https://placehold.co/600x338/007cf0/FFF?text=Watch+Ad" alt="Advertisement Video"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Advertisement</span>
+                        <h3>Softlogic Brand Advertisement</h3>
+                        <p>Promotional cover video content designed for brand awareness. By "Kusumsiri".</p>
+                    </div>
+                </div>
+
+                <!-- Google Drive: Product -->
+                <div class="video-card fade-in" data-category="product">
+                    <div class="video-wrapper">
+                        <a href="https://drive.google.com/file/d/123jnXpKhHPragahaYurjzOCp4S1-a3vy/view?usp=sharing"
+                            target="_blank" class="video-link">
+                            <img src="https://placehold.co/600x338/00dfd8/FFF?text=Product+Demo" alt="Product Video"
+                                class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-tag">Product Video</span>
+                        <h3>Product Showcase</h3>
+                        <p>Detailed product demonstation and feature highlight.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Services</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                <!-- Service 1 -->
+                <div class="fade-in"
+                    style="background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);">
+                    <div
+                        style="width: 60px; height: 60px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-video" style="font-size: 24px; color: white;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">AI Music Videos</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Create stunning visual narratives for your music using AI-generated scenes, dynamic animations,
+                        and cinematic storytelling that perfectly sync with your sound.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="fade-in"
+                    style="background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);">
+                    <div
+                        style="width: 60px; height: 60px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-bullhorn" style="font-size: 24px; color: white;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Brand Advertisements</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        High-impact promotional content that combines AI visuals with strategic messaging to elevate
+                        your brand and drive engagement across all platforms.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="fade-in"
+                    style="background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);">
+                    <div
+                        style="width: 60px; height: 60px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-box-open" style="font-size: 24px; color: white;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Product Showcases</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Hyper-realistic product demonstrations using AI-enhanced rendering and 3D motion to highlight
+                        features and create compelling visual presentations.
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="fade-in"
+                    style="background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);">
+                    <div
+                        style="width: 60px; height: 60px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-book-open" style="font-size: 24px; color: white;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Visual Storytelling</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Craft compelling narratives through AI-generated characters, environments, and scenes that bring
+                        your stories to life with cinematic quality.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Technical Skills</h2>
+            <div style="max-width: 1000px; margin: 0 auto;">
+
+                <!-- AI Tools -->
+                <div class="fade-in" style="margin-bottom: 50px;">
+                    <h3 style="margin-bottom: 30px; font-size: 1.8rem; text-align: center;">
+                        <span
+                            style="background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;">AI
+                            Generation Tools</span>
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-robot"
+                                style="font-size: 32px; color: var(--accent-1); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Veo 3</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Video Generation</p>
+                        </div>
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-water"
+                                style="font-size: 32px; color: var(--accent-2); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Flow AI</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Motion & Animation</p>
+                        </div>
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-magic"
+                                style="font-size: 32px; color: var(--accent-3); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Nanobanana Pro</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">AI Enhancement</p>
+                        </div>
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-brain"
+                                style="font-size: 32px; color: var(--accent-1); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Gemini</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">AI Assistant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Production Tools -->
+                <div class="fade-in">
+                    <h3 style="margin-bottom: 30px; font-size: 1.8rem; text-align: center;">
+                        <span
+                            style="background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;">Production
+                            & Editing</span>
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-cut"
+                                style="font-size: 32px; color: var(--accent-2); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">CapCut</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Video Editing</p>
+                        </div>
+                        <div
+                            style="background: var(--card-bg); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05);">
+                            <i class="fas fa-palette"
+                                style="font-size: 32px; color: var(--accent-3); margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Canva</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Design & Graphics</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Work With Me</h2>
+
+            <!-- Direct Contact Buttons -->
+            <div class="fade-in" style="max-width: 800px; margin: 0 auto 50px auto;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/94722788020" target="_blank"
+                        style="background: linear-gradient(135deg, #25D366, #128C7E); padding: 20px; border-radius: 12px; text-decoration: none; color: white; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);"
+                        onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(37, 211, 102, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.3)';">
+                        <i class="fab fa-whatsapp" style="font-size: 32px;"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.1rem;">WhatsApp</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">+94 72 278 8020</div>
+                        </div>
+                    </a>
+
+                    <!-- Call Button -->
+                    <a href="tel:+94722788020"
+                        style="background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); padding: 20px; border-radius: 12px; text-decoration: none; color: white; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0, 124, 240, 0.3);"
+                        onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 124, 240, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 124, 240, 0.3)';">
+                        <i class="fas fa-phone-alt" style="font-size: 32px;"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.1rem;">Call Me</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">+94 72 278 8020</div>
+                        </div>
+                    </a>
+
+                    <!-- Email Button -->
+                    <a href="mailto:Theshannavindana97@gmail.com"
+                        style="background: linear-gradient(135deg, var(--accent-3), #ff4081); padding: 20px; border-radius: 12px; text-decoration: none; color: white; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);"
+                        onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 0, 128, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 0, 128, 0.3)';">
+                        <i class="fas fa-envelope" style="font-size: 32px;"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 1.1rem;">Email</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Theshannavindana97@gmail.com</div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <p style="text-align: center; color: var(--text-secondary); margin-top: 30px; font-size: 1.1rem;">
+                    Or fill out the form below and I'll get back to you within 24 hours
+                </p>
+            </div>
+
+            <div class="contact-form fade-in">
+                <form id="contactForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="whatsapp" name="whatsapp"
+                            placeholder="Your WhatsApp Number (with country code)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Tell me about your AI video project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Proposal via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const message = document.getElementById('message').value;
+
+            // Format the message for WhatsApp
+            const whatsappMessage = `*New Project Inquiry*%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Email:* ${encodeURIComponent(email)}%0A` +
+                `*WhatsApp:* ${encodeURIComponent(whatsapp)}%0A%0A` +
+                `*Project Details:*%0A${encodeURIComponent(message)}`;
+
+            // Your WhatsApp number (without + sign, just country code and number)
+            const yourWhatsAppNumber = '94722788020';
+
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${yourWhatsAppNumber}?text=${whatsappMessage}`;
+
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+
+            // Optional: Reset form after submission
+            document.getElementById('contactForm').reset();
+
+            return false;
+        }
+
+        // Mobile Menu Toggle Functions
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <footer style="padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <p>&copy; 2026 MHT Navindana. AI Content Specialist.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category Filter Logic
+        function filterVideos(category, clickedBtn) {
+            const cards = document.querySelectorAll('.video-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update button styles
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
+
+            // Show/Hide cards
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.style.opacity = '1', 10);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // Animation Observer for Fade-In effects
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
